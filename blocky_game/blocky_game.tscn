@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtfktti54mneg"]
+
+[ext_resource type="Script" path="res://blocky_game/blocky_game.gd" id="5"]
+[ext_resource type="Script" path="res://blocky_game/debug_info.gd" id="8"]
+[ext_resource type="Script" path="res://blocky_game/blocks/blocks.gd" id="12"]
+[ext_resource type="Script" path="res://blocky_game/items/item_db.gd" id="13"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ixhix"]
+ground_color = Color(0.14902, 0.0901961, 0.0745098, 1)
+
+[sub_resource type="Sky" id="Sky_403h4"]
+sky_material = SubResource("PhysicalSkyMaterial_ixhix")
+
+[sub_resource type="Environment" id="2"]
+background_mode = 2
+sky = SubResource("Sky_403h4")
+ambient_light_color = Color(0.054902, 0.054902, 0.054902, 1)
+ambient_light_sky_contribution = 0.7
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_hdr_threshold = 0.5
+fog_enabled = true
+fog_aerial_perspective = 1.0
+
+[node name="Game" type="Node"]
+script = ExtResource("5")
+
+[node name="Blocks" type="Node" parent="."]
+script = ExtResource("12")
+
+[node name="Items" type="Node" parent="."]
+script = ExtResource("13")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("2")
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+gi_mode = 1
+generate_collisions = false
+run_stream_in_editor = false
+script = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.97321, 0.172326, -0.152203, -0.0478236, 0.495785, 0.867127, 0.224888, 0.851176, -0.474262, 1.51966, 19.7004, 14.0879)
+shadow_enabled = true
+
+[node name="DebugInfo" type="Node" parent="."]
+script = ExtResource("8")
+
+[node name="Players" type="Node" parent="."]
